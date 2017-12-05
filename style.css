@@ -243,7 +243,7 @@ button {
   padding: .5rem;
   margin: 0;
   font-family: 'Arial';
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #eee;
   border: none;
@@ -251,7 +251,7 @@ button {
   cursor: pointer;
 }
 
-button:hover, button:active {
+button:hover, button:focus {
   background: rgba(255, 255, 255, .3);
 }
 
@@ -267,8 +267,16 @@ button:hover, button:active {
   padding: .8rem 0 0 .5rem;
 }
 
+.codepen h3 {
+  padding: 1.5rem 0 0 .5rem;
+  margin: 0;
+}
+
 .codepen p {
-  padding: 1rem .5rem;
+  width: 65%;
+  padding: .5rem .5rem;
+  line-height: 1.2rem;
+  font-weight: bold;
 }
 
 .github {
@@ -294,6 +302,12 @@ button:hover, button:active {
   padding: 1rem .5rem;
 }
 
+.LI-badge-container.horizontal.dark {
+  width: 60% !important;
+  max-width: 500px !important;
+  min-width: 274px !important;
+}
+
 .slack {
   display: none;
 }
@@ -303,11 +317,18 @@ button:hover, button:active {
 }
 
 .slack form {
-  width: 50%;
+  width: 60%;
   /* margin-left: auto;
   margin-right: auto; */
   padding: 1rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@media (min-width: 660px) {
+  .slack form {
+    width: 70%;
+    max-width: 500px;
+    padding: 1rem;
+  }
 }
 
 .slack form input, .slack form textarea {
@@ -346,15 +367,27 @@ button:hover, button:active {
   margin: 0;
   border: none;
   text-align: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #4E5669;
+  cursor: pointer;
+  color: #eee;
+}
+
+.slack form input.submitBtn__disabled {
+  width: min-content;
+  padding: .4rem .8rem;
+  margin: 0;
+  border: none;
+  text-align: center;
+  cursor: not-allowed;
   background-color: #4E5669; 
   color: #eee;
-
 }
 
 .slack form p {
   text-align: left;
-  color: #fff;
+  line-height: 1.5rem;
+  font-weight: bold;
+  color: #333;
 }
 
 .slack form p a {
@@ -362,6 +395,10 @@ button:hover, button:active {
   font-weight: bold
 }
 
+sup {
+  text-transform: lowercase;
+  font-size: .8rem;
+}
 
 /* UNDER CONSTRUCTION BANNER */
 
@@ -370,8 +407,8 @@ button:hover, button:active {
   padding: 0;
   width: 100%;
   height: auto;
-  background-color: tomato;
-  color: #eee;
+  background-color: #f38b78;
+  color: #333;
 }
 
 .banner h4 {
