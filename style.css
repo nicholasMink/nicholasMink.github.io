@@ -251,7 +251,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover, button:active {
   background: rgba(255, 255, 255, .3);
 }
 
@@ -263,16 +263,103 @@ button:hover {
   display: none;
 }
 
+.codepen h2 {
+  padding: .8rem 0 0 .5rem;
+}
+
+.codepen p {
+  padding: 1rem .5rem;
+}
+
 .github {
   display: none;
+}
+
+.github h2 {
+  padding: .8rem 0 0 .5rem;
+}
+
+.github p {
+  padding: 1rem .5rem;
 }
 
 .linkedIn {
   display: none;
 }
+.linkedIn h2 {
+  padding: .8rem 0 0 .5rem;
+}
+
+.linkedIn .LI-profile-badge {
+  padding: 1rem .5rem;
+}
 
 .slack {
   display: none;
+}
+
+.slack h2 {
+  padding: 1.2rem 0 0 1rem;
+}
+
+.slack form {
+  width: 50%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  padding: 1rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.slack form input, .slack form textarea {
+  width: 100%;
+  padding: .4rem;
+  margin: 1rem 0;
+  background-color: #eee;
+  background-color: rgba(255, 255, 255, .86);
+  color: #333;
+  font-family: 'Arial';
+  font-size: 1rem;
+  border: none;
+}
+
+
+.slack form label {
+  color: #4E5669;
+  font-weight: bold;
+  /* text-shadow: 1px 1px 2px rgba(0, 0, 0, .4); */
+}
+.slack form label > * {
+  margin: .2rem 0 1rem 0;
+}
+
+.slack form textarea {
+  background-color: #eee;
+  background-color: rgba(255, 255, 255, .86);
+  color: #333;
+  font-family: 'Arial';
+  font-size: 1rem;
+}
+
+.slack form input.submitBtn {
+  width: min-content;
+  padding: .4rem .8rem;
+  margin: 0;
+  border: none;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #4E5669; 
+  color: #eee;
+
+}
+
+.slack form p {
+  text-align: left;
+  color: #fff;
+}
+
+.slack form p a {
+  color: #fff;
+  font-weight: bold
 }
 
 
