@@ -14,6 +14,15 @@ a {
   text-decoration-line: none
 }
 
+.skipNav {
+  position: absolute;
+  top: -1000px;
+}
+
+.skipNav:focus {
+  top: 0;
+}
+
 main {
   display: inline-flex;
   flex-wrap: nowrap;
@@ -298,16 +307,6 @@ button:hover, button:focus {
   padding: .8rem 0 0 .5rem;
 }
 
-.linkedIn .LI-profile-badge {
-  padding: 1rem .5rem;
-}
-
-.LI-badge-container.horizontal.dark {
-  width: 60% !important;
-  max-width: 500px !important;
-  min-width: 274px !important;
-}
-
 .slack {
   display: none;
 }
@@ -318,8 +317,6 @@ button:hover, button:focus {
 
 .slack form {
   width: 60%;
-  /* margin-left: auto;
-  margin-right: auto; */
   padding: 1rem;
 }
 
@@ -373,8 +370,8 @@ button:hover, button:focus {
 }
 
 .slack form input.submitBtn__disabled {
-  width: min-content;
-  padding: .4rem .8rem;
+  max-width: 30%;
+  padding: .5em 1em;
   margin: 0;
   border: none;
   text-align: center;
@@ -392,7 +389,8 @@ button:hover, button:focus {
 
 .slack form p a {
   color: #fff;
-  font-weight: bold
+  font-weight: normal;
+  text-decoration-style: dotted;
 }
 
 sup {
