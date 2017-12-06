@@ -273,7 +273,7 @@ button:hover, button:focus {
 }
 
 .codepen h2 {
-  padding: .8rem 0 0 .5rem;
+  padding: .8rem 0 1.5rem 0.5rem;
 }
 
 .codepen h3 {
@@ -283,9 +283,11 @@ button:hover, button:focus {
 
 .codepen p {
   width: 65%;
-  padding: .5rem .5rem;
+  padding: 1rem;
   line-height: 1.2rem;
   font-weight: bold;
+  background: rgba(255, 255, 255, .8);
+  border-radius: 0 5px 5px 0;
 }
 
 .github {
@@ -293,11 +295,22 @@ button:hover, button:focus {
 }
 
 .github h2 {
-  padding: .8rem 0 0 .5rem;
+  padding: .8rem 0 1.5rem .5rem;
 }
 
 .github p {
-  padding: 1rem .5rem;
+  width: 80%;
+  padding: 1rem;
+  line-height: 1.2rem;
+  font-weight: bold;
+  background: rgba(255, 255, 255, .8);
+  border-radius: 0 5px 5px 0;
+}
+
+.github img {
+  width: 20%;
+  height: auto;
+  display: inline-flex;
 }
 
 .linkedIn {

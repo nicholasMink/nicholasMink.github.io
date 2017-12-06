@@ -1,0 +1,101 @@
+<svg id="accStarLoad" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196.3 182.7">
+  <title>
+    ACC Star Loading
+  </title>
+  <style>
+        .svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .svg path {
+      fill: #000;
+    }
+
+    .triangle__red path {
+      fill: #EE3A43;
+    }
+
+    .triangle__blue path {
+      fill: #007AC3;
+    }
+
+    .triangle__yellow path {
+      fill: #FFD51D;
+    }
+
+    .triangle__green path {
+      fill: #009C7C;
+    }
+
+    @keyframes accStarLoad {
+      0%   {transform: translateY(0)}
+      25%  {transform: translateY(-25px)}
+      75%  {transform: translateY(25px)}
+      100% {transform: translateY(0)}
+    }
+
+    .accStarLoad {
+      animation: accStarLoad 5s linear infinite;
+    }
+
+    @keyframes triangle-fade-1 {
+      0%, 5%  {opacity: 0}
+      15%, 65% {opacity: 1}
+      100%     {opacity: 0}
+    }
+    @keyframes triangle-fade-2 {
+      0%, 10%  {opacity: 0}
+      25%, 75% {opacity: 1}
+      100%     {opacity: 0}
+    }
+    @keyframes triangle-fade-3 {
+      0%, 15%  {opacity: 0}
+      35%, 85% {opacity: 1}
+      100%     {opacity: 0}
+    }
+    @keyframes triangle-fade-4 {
+      0%, 20%  {opacity: 0}
+      45%, 95% {opacity: 1}
+      100%     {opacity: 0}
+    }
+
+    @keyframes tri-to-circ {
+      0%, 20% {transform: scale(1,1)}
+      50% {transform: scale(1,.8)}
+      100% {transform: scale(1,1)}
+    }
+
+    .triangle__green {
+      animation: triangle-fade-1 2s ease infinite;
+      
+    }
+
+    .triangle__blue {
+      animation: triangle-fade-2 2s ease infinite;
+      
+    }
+
+    .triangle__yellow {
+      animation: triangle-fade-3 2s ease infinite;
+      
+    }
+
+    .triangle__red {
+      animation: triangle-fade-4 2s ease infinite;
+      
+    }
+  </style>
+  <g class="triangle__blue">
+    <path class="st0" d="M142.3 148.9c-18.7-15.4-37.3-30.8-56-46.2 1.8-10 3.5-20 5.3-30.1 29.9-7.5 59.7-14.9 89.6-22.4 0 .1.1.1.1.2-22.9 15.3-45.7 30.5-68.7 45.9 10 17.5 20 35 29.9 52.5-.1 0-.1.1-.2.1z"/>
+  </g>
+  <g class="triangle__red">
+    <path class="st1" d="M26.7 150.8c1.9-4.1 3.9-8.2 5.9-12.3 7.8-16.1 15.6-32.2 23.3-48.3.2-.4.3-.7.5-1.2C42.3 79.6 28.1 70.3 14 61c0-.1.1-.2.1-.3 21.3 4.3 42.7 8.6 64.2 13-.9 7.4-1.9 14.7-2.8 22-11.1 12.6-22.2 25.2-33.2 37.8-5.1 5.8-10.3 11.6-15.4 17.4l-.2-.1z"/>
+  </g>
+  <g class="triangle__yellow">
+    <path class="st2" d="M143.4 157.8c-.4-.1-.8-.2-1.2-.4-18.3-9-36.5-18-54.8-27.1-2-1-3.8-1.3-6.1-.7-12.2 3-24.5 5.8-36.8 8.7-.3.1-.5.1-.9 0 14.3-8.9 28.5-17.8 42.8-26.7 2.9 2.4 5.8 4.7 8.7 7 15.8 12.9 31.6 25.7 47.4 38.6.4.1.7.3.9.6z"/>
+  </g>
+  <g class="triangle__green">
+    <path class="st3" d="M84.2 26.9c9.6 9.2 19.1 18.3 28.7 27.5-11.1 2.8-22 5.6-33.1 8.4 1.4-12 2.9-23.8 4.4-35.9z"/>
+  </g>
+</svg>
