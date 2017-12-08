@@ -320,6 +320,42 @@ button:hover, button:focus {
 .linkedIn h2 {
   padding: .8rem 0 0 .5rem;
 }
+.linkedIn a {
+  margin: 0 2em;
+  line-height: 1.5rem;
+}
+.linkedIn__card {
+  position: relative;
+  background: rgba(255, 255, 255, .4);
+  border-radius: 0 5px 5px 0;
+}
+.linkedIn__heading {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 2em;
+}
+.linkedIn__profile {
+  padding: 1rem;
+  display: inline-block;
+}
+.linkedIn__title {
+  font-size: 1.5rem;
+  line-height: 1rem;
+  margin: 0 1.3em 0.3em;
+}
+.linkedIn__subtitle {
+  font-size: 1.2rem;
+  margin: .5em 1.7em;
+}
+.linkedIn__deets {
+  font-size: 1rem;
+  margin: 0 2em;
+}
+.linkedIn__logo {
+  position: absolute;
+  bottom: 5px;
+  right: 4px;
+}
 
 .slack {
   display: none;
@@ -384,7 +420,7 @@ button:hover, button:focus {
 }
 
 .slack form input.submitBtn__disabled {
-  max-width: 30%;
+  max-width: 137px;
   padding: .5em 1em;
   margin: 0;
   border: none;
