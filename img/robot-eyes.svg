@@ -1,0 +1,56 @@
+<svg id="robotEyes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <title>Robot Eyes</title>
+  <style>
+    .back_eye {
+      fill: #333
+    }
+    
+    .eye_color {
+      fill: #8591ff
+    }
+    
+    .eyelid_top {
+      fill: #676768
+    }
+    
+    .eye_blink, .eye_lids {
+      fill: #4f4f4f;
+    }
+    .eye_lids {
+      animation: eyelid-1-opacity 3s ease infinite;
+    }
+    
+    .eye_blink {
+      animation: eyeblink-1-opacity 3s ease infinite;
+    }
+    
+    @keyframes eyelid-1-opacity {
+      0%, 45% {opacity: 0}
+      46%, 54% {opacity: 1}
+      55%,100%     {opacity: 0}
+    }
+    @keyframes eyeblink-1-opacity {
+      0%,47%  {opacity: 0}
+      48%, 52%     {opacity: 1}
+      53%, 100%     {opacity: 0}
+    }
+  </style>
+  <g id="rightEye">
+    <polygon id="Layer_2" points="411.2,398 292.8,398 233.6,500.5 292.8,603 411.2,603 470.4,500.5" class="back_eye"/>
+    <circle id="Layer_3" cx="352" cy="501" r="56" class="eye_color"/>
+    <polygon points="470.3,500.5 470.4,500.4 409.5,398.9 291.1,400.9 233.7,504.4 353.9,500" class="eyelid_top"/>
+  </g>
+  <g id="leftEye">
+    <polygon id="Layer_1" points="707.2,398 588.8,398 529.6,500.5 588.8,603 707.2,603 766.4,500.5" class="back_eye"/>
+    <circle id="Layer_4" cx="648" cy="501" r="56" class="eye_color"/>
+    <polygon points="767.3,497.5 767.4,497.4 706.5,395.9 588.1,397.9 530.7,501.4 650.9,497" class="eyelid_top"/>
+  </g>
+  <g id="eyeLid_half">
+      <polygon points="233.5,502.5 233.4,502.6 294.3,604.1 412.7,602.1 470.1,498.6 349.9,571" class="eye_lids"></polygon>
+      <polygon id="Layer_8" points="529.5,499.5 529.4,499.6 590.3,601.1 708.7,599.1 766.1,495.6 645.9,571" class="eye_lids"></polygon>
+  </g>
+  <g id="eyeLids">
+    <polygon points="233.5,502.5 233.4,502.6 294.3,604.1 412.7,602.1 470.1,498.6 349.9,503" class="eye_blink"/>
+    <polygon id="Layer_8" points="529.5,499.5 529.4,499.6 590.3,601.1 708.7,599.1 766.1,495.6 645.9,500" class="eye_blink"/>
+  </g>
+</svg>
