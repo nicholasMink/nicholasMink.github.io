@@ -1,6 +1,6 @@
 {
   "name": "Nick Mink's Portfolio",
-  "short_name": "Nick's Portfolio",
+  "short_name": "NM Portfolio",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fff",
