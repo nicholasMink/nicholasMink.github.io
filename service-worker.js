@@ -1,12 +1,11 @@
-var dataCacheName = 'portfolioData-v1';
-var cacheName = 'portfolioPWA-final-1';
+var dataCacheName = 'minkData-v1';
+var cacheName = 'minkPWA';
 
 var filesToCache = [
   './',
   './index.html',
-  './style.css',
-  './app.js',
   './index.js',
+  './style.css',
   './img/ACC-logo.png',
   './img/acc-star-color.svg',
   './img/acc-star.svg',
