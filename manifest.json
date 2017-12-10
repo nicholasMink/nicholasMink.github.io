@@ -1,0 +1,36 @@
+{
+  "name": "Nick Mink",
+  "short_name": "Nick Mink",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#007ac3",
+  "description": "Nick Mink's Portfolio",
+  "icons": [{
+    "src": "img/linkedIn-profile-image.jpg",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "img/linkedIn-profile-image.jpg",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "img/linkedIn-profile-image.jpg",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "img/linkedIn-profile-image.jpg",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "img/linkedIn-profile-image.jpg",
+    "sizes": "168x168",
+    "type": "image/png"
+  }, {
+    "src": "img/linkedIn-profile-image.jpg",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
+  "related_applications": [{
+    "platform": "web"
+  }]
+}
