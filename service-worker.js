@@ -1,28 +1,28 @@
 var dataCacheName = 'minkData-v1';
-var cacheName = 'minkPWA';
+var cacheName = 'minkPWA-1';
 
 var filesToCache = [
-  './',
-  './index.html',
-  './index.js',
-  './style.css',
-  './img/ACC-logo.png',
-  './img/acc-star-color.svg',
-  './img/acc-star.svg',
-  './img/bg-pattern.svg',
-  './img/li-profile.png',
-  './img/linkedIn-profile-image.jpg',
-  './img/logo_linkedin.png',
-  './img/music-app-logo.png',
-  './img/music-app.png',
-  './img/Optimus-logo.png',
-  './img/robot-eyes.svg',
-  './img/star-loader.svg',
-  './img/stellar-cellar-logo.png',
-  './img/stellar-cellar.png',
-  './img/TLED-logo.png',
-  './img/TLED.png',
-  './img/TLED_white.svg'
+  '/',
+  '/index.html',
+  '/index.js',
+  '/style.css',
+  '/img/ACC-logo.png',
+  '/img/acc-star-color.svg',
+  '/img/acc-star.svg',
+  '/img/bg-pattern.svg',
+  '/img/li-profile.png',
+  '/img/linkedIn-profile-image.jpg',
+  '/img/logo_linkedin.png',
+  '/img/music-app-logo.png',
+  '/img/music-app.png',
+  '/img/Optimus-logo.png',
+  '/img/robot-eyes.svg',
+  '/img/star-loader.svg',
+  '/img/stellar-cellar-logo.png',
+  '/img/stellar-cellar.png',
+  '/img/TLED-logo.png',
+  '/img/TLED.png',
+  '/img/TLED_white.svg'
 ];
 
 self.addEventListener('install', function(e) {
