@@ -7,6 +7,10 @@
   "theme_color": "#586073",
   "description": "Nick Mink's Portfolio",
   "icons": [{
+    "src": "/favicon.ico",
+    "sizes": "32x32",
+    "type": "image/ico"
+  }, {
     "src": "img/linkedIn-profile-image.png",
     "sizes": "48x48",
     "type": "image/png"

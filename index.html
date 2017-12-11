@@ -7,7 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="style.css" rel="stylesheet">
     <meta name="theme-color" content="#586073"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="manifest" href="./manifest.json">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+    <link rel="icon" sizes="192x192" href="img/icon-192x192.png">
+  
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+    <link rel="apple-touch-icon" href="img/icon-192x192.png">
+  
+    <!-- Tile for Win8 -->
+    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="msapplication-TileImage" content="img/icon-192x192.png">
   </head>
   <body>
     <a class="skipNav" href="#mainContent">Skip to main content</a>
@@ -151,6 +166,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
     <script src="./index.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+            console.log('Service Worker registration successful with scope: ',
+            registration.scope);
+          })
+          .catch(function(err) {
+            console.log('Service Worker registration failed: ', err);
+          });
+      }
+    </script>
     
   </body>
   </html>
