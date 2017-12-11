@@ -39,11 +39,12 @@ main section {
 }
 
 main section .title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .recent h2 {
-  padding: 1.2rem 0 0 1rem;
+  padding: .8rem 0 1.5rem 0.5rem;;
+  color: #4E5669;
 }
 
 main section .projects {
@@ -92,8 +93,8 @@ main section .projects .card__right {
 }
 
 main section .projects .card__right .title {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: .9rem;
+  font-weight: bold;
   vertical-align: baseline
 }
 
@@ -101,7 +102,7 @@ main section .projects .card__right p {
   margin: 0;
   width: 100%;
   padding: .8rem 0 0 1rem;
-  font-size: 1.2rem;
+  font-size: .9rem;
   line-height: 1.2rem;
   vertical-align: baseline
 }
@@ -140,12 +141,16 @@ main section .projects .card__right a {
     cursor: default
   }
   main section .projects .card__right .title {
+    font-size: 1rem;
+    font-weight: bold;
     vertical-align: baseline
   }
   main section .projects .card__right p {
     margin: 0;
     padding: 0 1rem;
     width: 96%;
+    height: auto;
+    overflow: auto;
     font-size: 1rem;
     line-height: 1.2rem;
     vertical-align: baseline
@@ -275,6 +280,7 @@ button:hover, button:focus {
 
 .codepen h2 {
   padding: .8rem 0 1.5rem 0.5rem;
+  color: #4E5669;
 }
 
 .codepen h3 {
@@ -297,6 +303,7 @@ button:hover, button:focus {
 
 .github h2 {
   padding: .8rem 0 1.5rem .5rem;
+  color: #4E5669;
 }
 
 .github p {
@@ -319,6 +326,7 @@ button:hover, button:focus {
 }
 .linkedIn h2 {
   padding: .8rem 0 0 .5rem;
+  color: #4E5669;
 }
 .linkedIn a {
   margin: 0 2em;
@@ -363,6 +371,7 @@ button:hover, button:focus {
 
 .slack h2 {
   padding: 1.2rem 0 0 1rem;
+  color: #4E5669;
 }
 
 .slack form {
