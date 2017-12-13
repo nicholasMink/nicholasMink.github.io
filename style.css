@@ -130,9 +130,6 @@ main section .projects .card__right a {
     width: 94%;
     filter: grayscale(1)
   }
-  main section .projects .card__left img.alter {
-    background: rgba(66, 90, 145, 0.7)
-  }
   main section .projects .card__right {
     flex-direction: column;
     width: 80%;
