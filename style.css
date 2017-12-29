@@ -132,7 +132,6 @@ main section .projects .card__right a {
   }
   main section .projects .card__right {
     flex-direction: column;
-    width: 80%;
     line-height: 1.7rem;
     padding: 1rem 0;
     cursor: default
