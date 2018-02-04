@@ -126,8 +126,6 @@ function sendEmail() {
 }
 function thankYou( ) {
   emailForm.style.display = "none";
-  let displayName = eName.value;
-  eName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
-  let messageText = `<div><h2>Thanks ${eName},</h2><p>I'll be in touch shortly!</p></div>`;
+  let messageText = `<div><h2>Thanks ${eName.value},</h2><p>I'll be in touch shortly!</p></div>`;
   submitMsg.innerHTML = messageText;
 }
