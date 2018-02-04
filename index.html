@@ -28,7 +28,7 @@
     <a class="skipNav" href="#mainContent">Skip to main content</a>
     <div class="fullView">
       <div class="banner">
-        <h4>Under maintenance... Last updated on December 25<sup>th</sup>, 2017.</h4>
+        <h4>Under maintenance... Last updated on February 4<sup>th</sup>, 2018.</h4>
       </div>
       <main>
         <aside>
@@ -50,16 +50,6 @@
             <!-- Beginning of Projects -->
             <div class="card">
               <section class="card__left">
-                <a href="http://optimus-us.com" rel="noopener" target="_blank">
-                  <img src="./img/Optimus-logo.png" alt="optimus image">
-                </a>
-              </section>
-              <section class="card__right">
-                <p><span class="title">Optimus</span> is a world-wide recruiting firm for the energy industry with headquarters in Houston, Texas. Working with partners directly made this redesign hosted by Network Solutions process a breeze. During the ongoing collaboration with the Optimus' partners, we decided our best approach would consist of a responsive and simple layout. All pages were restricted to a height and width of the viewport for desktop. For mobile, we wanted to render the background images with an overlay for readability.<a href="http://optimus-us.com" rel="noopener" target="_blank">Visit Website</a></p>
-              </section>
-            </div>
-            <div class="card">
-              <section class="card__left">
                 <a href="http://tled.austincc.edu" rel="noopener" target="_blank">
                   <img src="./img/TLED-logo.png" alt="Teaching and Learning of Excellence Division logo">
                 </a>
@@ -70,12 +60,22 @@
             </div>
             <div class="card">
               <section class="card__left">
+                <a href="http://optimus-us.com" rel="noopener" target="_blank">
+                  <img src="./img/Optimus-logo.png" alt="optimus image">
+                </a>
+              </section>
+              <section class="card__right">
+                <p><span class="title">Optimus</span> places high talent globally within the energy industry. Working with Optimus' partners directly made this redesign hosted by Network Solutions process a breeze. During the ongoing collaboration with partners, we concluded our design goals would consist of a responsive and simple layout. Pages were restricted to a height and width of the viewport for desktop. For mobile, pages render with simple text without viewport restrictions. Optimus' headquarters are located in Houston, Texas.<a href="http://optimus-us.com" rel="noopener" target="_blank">Visit Website</a></p>
+              </section>
+            </div>
+            <div class="card">
+              <section class="card__left">
                 <a href="http://sites.austincc.edu/facdev" rel="noopener" target="_blank">
                   <img src="./img/ACC-logo.png" alt="Austin Community College logo">
                 </a>
               </section>
               <section class="card__right">
-                <p><span class="title">Faculty Development</span> at Austin Community College. Projects include: Software Day, Spring Development Day, Austin Community College Awards Ceremony, Leadership Academy, and General Assembly.<a href="http://sites.austincc.edu/facdev" rel="noopener" target="_blank">Visit Website</a></p>
+                <p><span class="title">Faculty Development</span> at Austin Community College. Projects include: Software Day, Spring Development Day, Austin Community College Awards Ceremony, Leadership Academy, and General Assembly. I also built an Android application for Spring Development Day in 2017 using Android Studio that was available in the Google Play Store.<a href="http://sites.austincc.edu/facdev" rel="noopener" target="_blank">Visit Website</a></p>
               </section>
             </div>
             <div class="card">
@@ -142,18 +142,27 @@
           </div>
         </section>
         <section class="slack">
-          <h2>Email</h2>
-          <form action="https://hooks.slack.com/services/" method="post">
-            <label for="fname">Full name
-              <input name="fname" id="fname" class="fname" type="text" placeholder="" required>
+          <h2>Contact</h2>
+          
+          <div class="submitMessage"></div>
+
+          <form action="https://formspree.io/nicholas.mink@austincc.edu" method="post">
+            <input type="hidden" name="_subject" value="Email From Portfolio" />
+            <label class="labelName" for="name">Name
+              <input type="text" name="name" id="name" class="name" placeholder="" required />
             </label>
-            <label for="userMessage">Message
-              <textarea name="userMessage" id="userMessage" placeholder="" aria-placeholder="Your Message" cols="24" rows="8" required></textarea>
+            <label class="labelAddress" for="email">Email
+              <input type="email" name="email" id="email" class="fname" placeholder="" required>
             </label>
-            <input id="formBtn" class="submitBtn__disabled" type="submit" value="Send Message" disabled />
-            <p>Email: <a href="mailto:nicholas.mink@austincc.edu">nicholas.mink@austincc.edu</a></p>
-            <p>Or just contact me on through my public Slack channel <a href="https://join.slack.com/t/nick-mink/shared_invite/enQtMjgwNTc5MzQxMDc3LTRjYzg1ZWMzYmNhY2U2MTU0MjY0YmYyOGNmMDA5OTMwZGJjMTRiY2MxNDVhMmE3MTg4NDk2YjY4ZTFiZTAzYjY">here</a>.</p>
+
+            <label class="labelMessage" for="message">Message
+              <textarea class="message" name="message" id="message" placeholder="" aria-placeholder="Your Message" cols="24" rows="8" required></textarea>
+            </label>
+            
+            <button class="emailBtn" type="submit">Send Message</button>
+            
           </form>
+
         </section>
       </main>
     </div>
@@ -178,8 +187,10 @@
           });
       }
     </script>
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="./index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+
     <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
     
   </body>
