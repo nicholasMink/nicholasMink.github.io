@@ -76,7 +76,7 @@ let submitMsg = document.querySelector('.submitMessage');
 
 emailBtn.addEventListener('click', function(el) {
   el.preventDefault();
-  if( eName.value.length < 1 || eAddress.value.length < 4 || eMessage.value.length < 1 ) {
+  if( eName.value.length < 1 || !eAddress.validity.valid || eMessage.value.length < 1 ) {
     console.log("Missing field!");
     document.querySelector('.labelMessage').style.color = "#4E5669";
     eMessage.style.boxShadow = "";
@@ -99,7 +99,8 @@ function invalidForm( ) {
     eMessage.style.boxShadow = "0 3px 15px rgba(243, 139, 120, .75)";
     eMessage.focus();
   }
-  if (eAddress.value.length < 1) {
+  if (!eAddress.validity.valid) {
+    console.log('Email invalid');
     document.querySelector('.labelAddress').style.color = "#f38b78";
     eAddress.style.boxShadow = "0 3px 15px rgba(243, 139, 120, .75)";
     eAddress.focus();
