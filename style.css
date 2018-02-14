@@ -177,7 +177,7 @@ main aside {
 
 main aside .title {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.2rem;
   text-decoration-line: underline;
   padding: 1.2rem 1rem 0 1rem;
@@ -343,10 +343,15 @@ svg {
   padding: .8rem 0 1.5rem .5rem;
   color: #4E5669;
 }
+.github h3 {
+  padding-left: .5rem;
+  font-size: 1.5rem;
+  color: #4E5669;
+}
 
 .github p {
   width: 80%;
-  padding: 1rem;
+  padding: 1rem .5rem;
   line-height: 1.2rem;
   font-weight: bold;
   background: rgba(255, 255, 255, .8);
@@ -371,9 +376,9 @@ svg {
   line-height: 1.5rem;
 }
 .linkedIn__card {
+  max-width: 30rem;
   position: relative;
   background: rgba(255, 255, 255, .4);
-  /* background-image: url('./img/nm-linkedIn.png'); */
   background-size: cover;
   border-radius: 0 5px 5px 0;
 }
@@ -533,7 +538,7 @@ sup {
   text-align: center;
   text-transform: uppercase;
   font-size: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 1.5rem;
   margin: 0;
 }
 
