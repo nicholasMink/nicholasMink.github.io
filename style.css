@@ -164,6 +164,20 @@ main section .projects .card__right p a  {
   }
 }
 
+.card__left.about {
+  justify-content: space-between;
+}
+.about__tools {
+  padding-top: 1rem;
+}
+.my__things {
+  width: 100%;
+  list-style: none;
+  position: relative;
+  margin: .3rem 0;
+  padding: 0 1rem;
+}
+
 main aside {
   padding: 0 .5rem 0 0;
   margin: 0;
