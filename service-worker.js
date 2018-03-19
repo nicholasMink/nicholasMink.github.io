@@ -4,13 +4,14 @@
   
   var filesToCache = [
     '.',
-    './style.css',
+    './style.min.css',
     './img/ACC-logo.png',
     './img/bg-pattern.svg',
     './img/li-profile.png',
     './img/logo_linkedin.png',
     './img/music-app-logo.png',
     './img/Optimus-logo.png',
+    './guitar-tuner/guitar_tuner.png',
     './img/robot-eyes.svg',
     './img/star-loader.svg',
     './img/stellar-cellar-logo.png',
@@ -21,7 +22,7 @@
     './index.js'
   ];
   
-  var staticCacheName = 'portfolio-cache-v1';
+  var staticCacheName = 'portfolio-cache-v2';
 
   self.addEventListener('install', function(event) {
     console.log('Attempting to install service worker and cache static assets');
