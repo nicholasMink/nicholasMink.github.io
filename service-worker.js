@@ -19,7 +19,8 @@
     './index.html',
     './offline.html',
     './404.html',
-    './index.js'
+    './js/index.js',
+    './js/contact.js'
   ];
   
   var staticCacheName = 'portfolio-cache-v2';
