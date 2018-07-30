@@ -1,8 +1,8 @@
-let map;
 const dogSection = document.querySelector('.dog-data');
+const dogInput = document.querySelector('#dog-search');
 const dogData = [];
 let dogs = [];
-const dogInput = document.querySelector('#dog-search');
+let map;
 
 $.ajax({
   url: "https://data.austintexas.gov/resource/h8x4-nvyi.json",
