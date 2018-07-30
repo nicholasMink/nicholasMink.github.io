@@ -1,0 +1,104 @@
+/* TODO: Add some styles. Use a preprocessor like Sass if it helps. */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+html, body {
+  margin: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+.map {
+  width: auto;
+  height: 20em;
+}
+.dog-data {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+.dog-card {
+  text-align: center;
+  width: 18rem;
+  background: #266299;
+  color: #fff;
+  margin: 1rem;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.dog-card-content {
+  padding: 0 1rem;
+  flex-grow: 1;
+}
+.dog-card-button button {
+  width: 100%;
+  height: 2.5rem;
+  border: none;
+  font-size: 1rem;
+  background: #fff;
+  color: #474454;
+  font-weight: 700;
+  cursor: not-allowed;
+}
+.dog-card button:hover {
+  background: #474454;
+  color: #fff;
+}
+.dog-header {
+  background: #266299;
+  color: #fff;
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dog-header h2 {
+  margin: 0;
+  padding: 1rem;
+}
+.dog-header input {
+  height: 1.5rem;
+  align-self: center;
+  margin-right: 1.5rem;
+  margin-left: 1rem;
+  color: #266299;
+  padding: .3rem;
+  width: 15rem;
+  font-size: 1.2rem;
+}
+.overview p {
+  margin: 1rem;
+}
+a.skip-main {
+  left:-999px;
+  position:absolute;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  z-index:-999;
+}
+a.skip-main:focus, a.skip-main:active {
+  color: #fff;
+  background-color:#000;
+  left: auto;
+  top: auto;
+  width: 30%;
+  height: auto;
+  overflow:auto;
+  margin: 10px 35%;
+  padding:5px;
+  border-radius: 15px;
+  border:4px solid yellow;
+  text-align:center;
+  font-size:1.2em;
+  z-index:999;
+}
+
+@media screen and (max-width: 40em) {
+  .dog-card {
+    width: 100%;
+  }
+}
