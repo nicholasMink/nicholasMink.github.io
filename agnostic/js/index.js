@@ -17,6 +17,9 @@ $.ajax({
     mapControl(data);
 });
 
+/**
+ * Map for dogs
+ */
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 30.2972, lng: -97.7431},
@@ -44,7 +47,6 @@ const setMapMarkers = (lat, long, markerTip, first, last) => {
 
 }
 
-// console.log(dogs);
 let mapControl = (mapData) => {
   // console.table(mapData)
   mapData.forEach(dog => {
@@ -57,18 +59,21 @@ let mapControl = (mapData) => {
       setMapMarkers(lat, long, description, ownerFirst, ownerLast);
     }
   });
-}
+} /* End of map */
 
+/**
+ * Search Dangerous Dogs
+ */
 let dogContent;
+let searchParam;
 
 dogInput.addEventListener('click', () => {
   dogContent = document.querySelectorAll('.dog-card-content');
-  console.log(dogContent);
   storeDogContent(dogContent);
 });
 
 dogInput.addEventListener('keyup', () => {
-  let searchParam = dogInput.value;
+  searchParam = dogInput.value;
   console.log(searchParam);
 });
 
@@ -79,9 +84,7 @@ const storeDogContent = (content) => {
 }
 
 /**
- * 
  * Creates dog card elements
- * 
  */
 const createDogElements = (data) => {
   data.forEach(dog => {
@@ -98,6 +101,4 @@ const createDogElements = (data) => {
       </div>`;
   });
 }
-
-// console.log('dogData:', dogData);
 
