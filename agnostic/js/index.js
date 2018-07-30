@@ -27,8 +27,8 @@ function initMap() {
   });
 }
 
-const setMapMarkers = (lat, long, markerTip, first, last) => {
-  const content = `<h3>${markerTip}</h3><h4>Owner - ${first} ${last}</h4>`;
+const setMapMarkers = (lat, long, markerTip, first, last, address) => {
+  const content = `<h3>${markerTip}</h3><h4>Owner - ${first} ${last}</h4><p>${address}</p>`;
   var infowindow = new google.maps.InfoWindow({
     content: content
   });
@@ -56,7 +56,8 @@ let mapControl = (mapData) => {
       let description = dog.description_of_dog;
       let ownerFirst = dog.first_name;
       let ownerLast = dog.last_name;
-      setMapMarkers(lat, long, description, ownerFirst, ownerLast);
+      let address = `${dog.address}, ${dog.zip_code}`;
+      setMapMarkers(lat, long, description, ownerFirst, ownerLast, address);
     }
   });
 } /* End of map */
