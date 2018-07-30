@@ -37,7 +37,7 @@ const setMapMarkers = (lat, long, markerTip, first, last) => {
   var marker = new google.maps.Marker({
     position: latLng,
     map: map,
-    title: content,
+    title: markerTip,
     animation: google.maps.Animation.DROP
   });
 
