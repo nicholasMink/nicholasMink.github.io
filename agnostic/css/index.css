@@ -1,21 +1,26 @@
 /* TODO: Add some styles. Use a preprocessor like Sass if it helps. */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
 html, body {
   margin: 0;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
 }
+
 .map {
   width: auto;
   height: 20em;
 }
+
 .dog-data {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
 }
+
 .dog-card {
   text-align: center;
   width: 18rem;
@@ -27,10 +32,12 @@ body {
   flex-direction: column;
   align-items: stretch;
 }
+
 .dog-card-content {
   padding: 0 1rem;
   flex-grow: 1;
 }
+
 .dog-card-button button {
   width: 100%;
   height: 2.5rem;
@@ -41,10 +48,12 @@ body {
   font-weight: 700;
   cursor: not-allowed;
 }
+
 .dog-card button:hover {
   background: #474454;
   color: #fff;
 }
+
 .dog-header {
   background: #266299;
   color: #fff;
@@ -54,10 +63,20 @@ body {
   align-items: center;
 }
 
+.dog-header label {
+  position: relative;
+}
+
 .dog-header h2 {
   margin: 0;
   padding: 1rem;
 }
+
+.suggestions {
+  position: absolute;
+  top: 2.5rem;
+}
+
 .dog-header input {
   height: 1.5rem;
   align-self: center;
@@ -68,9 +87,16 @@ body {
   width: 15rem;
   font-size: 1.2rem;
 }
+
 .overview p {
-  margin: 1rem;
+  max-width: 60.5rem;
+  display: flex;
+  margin: auto;
+  background: #eee;
+  padding: 1rem;
+  margin-top: 1rem;
 }
+
 a.skip-main {
   left:-999px;
   position:absolute;
@@ -80,6 +106,7 @@ a.skip-main {
   overflow:hidden;
   z-index:-999;
 }
+
 a.skip-main:focus, a.skip-main:active {
   color: #fff;
   background-color:#000;
@@ -97,8 +124,18 @@ a.skip-main:focus, a.skip-main:active {
   z-index:999;
 }
 
+@media screen and (max-width: 50em) {
+  .dog-header {
+    height: auto;
+    flex-direction: column;
+  }
+  .dog-header label {
+    margin-bottom: 1rem;
+  }
+}
+
 @media screen and (max-width: 40em) {
   .dog-card {
     width: 100%;
   }
-}
+}  
