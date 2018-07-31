@@ -89,7 +89,7 @@ const setMapMarkers = (lat, long, markerTip, first, last, address) => {
     position: latLng,
     map: map,
     title: markerTip,
-    icon: '../img/agnostic/dog-marker.svg', // adjust for local development
+    icon: '../agnostic/img/dog-marker.svg', // adjust for local development
     animation: google.maps.Animation.DROP
   });
 
