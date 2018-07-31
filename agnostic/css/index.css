@@ -87,6 +87,16 @@ iframe {
   top: 1rem;
   right: 1.5rem;
 }
+
+.suggestions li {
+  margin: 1rem auto;
+  padding: .3rem .5rem;
+  background: #fff;
+  color: #333;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .dog-result {
   margin-bottom: 1rem;
 }
