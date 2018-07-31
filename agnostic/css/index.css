@@ -13,6 +13,7 @@ body {
 .map {
   width: auto;
   height: 20em;
+  z-index: -1;
 }
 
 .dog-data {
@@ -73,8 +74,16 @@ body {
 }
 
 .suggestions {
+  display: none;
   position: absolute;
-  top: 2.5rem;
+  background: #266299;
+  padding: 1rem;
+  list-style: none;
+  top: 1rem;
+  right: 1.5rem;
+}
+.dog-result {
+  margin-bottom: 1rem;
 }
 
 .dog-header input {
