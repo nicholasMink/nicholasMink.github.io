@@ -58,7 +58,7 @@ const register = () => {
   function registerServiceWorker() {
     if (!navigator.serviceWorker) return;
       navigator.serviceWorker.register('/sw.js', {
-        scope: '/agnostic/'
+        scope: './agnostic/'
       }).then(() => {
             console.log('Service worker has been successfully registered.');
       }).catch((err) => {
