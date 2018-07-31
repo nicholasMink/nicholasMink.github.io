@@ -13,7 +13,11 @@ body {
 .map {
   width: auto;
   height: 20em;
-  z-index: -1;
+  z-index: 0;
+}
+/* google map includes empty iframe without title */
+iframe {
+  display: none;
 }
 
 .dog-data {
@@ -66,6 +70,7 @@ body {
 
 .dog-header label {
   position: relative;
+  z-index: 1;
 }
 
 .dog-header h2 {
@@ -140,6 +145,18 @@ a.skip-main:focus, a.skip-main:active {
 
 .breadcrumbs {
   display: flex;
+  padding-right: 1rem;
+}
+
+.breadcrumbs > * {
+  margin: 0 0.5rem 0 0;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.breadcrumbs > *:last-of-type {
+  font-weight: bold;
 }
 
 @media screen and (max-width: 50em) {

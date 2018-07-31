@@ -15,6 +15,7 @@ $.ajax({
     dogData.push(...data);
     createDogElements(data);
     mapControl(data);
+    console.log(data)
 });
 
 /**
@@ -72,6 +73,7 @@ let dogInfo = [];
 dogInput.addEventListener('click', () => {
   dogContent = document.querySelectorAll('.dog-card-content');
   storeDogContent(dogContent);
+  console.log(viewButtons);
 });
 
 dogInput.addEventListener('keyup', displayMatches);
@@ -96,32 +98,35 @@ function displayMatches( ) {
   const html = matchArray.map(descr => {
     return `
       <li>
-        <span class="dog-result">${descr.firstChild.data}</span>
+      <span class="dog-result">${descr.firstChild.data}</span>
       </li>
-    `;
-  }).join('');
-
-  searchSuggestions.innerHTML = html;
-}
-
-
-function findMatches(searchParam) {
-  return dogInfo.filter(dog => {
-    const regex = new RegExp(searchParam, 'gi');
-    return dog.innerText.match(regex) 
-  });
+      `;
+    }).join('');
+    
+    searchSuggestions.innerHTML = html;
+  }
+  
+  
+  function findMatches(searchParam) {
+    return dogInfo.filter(dog => {
+      const regex = new RegExp(searchParam, 'gi');
+      return dog.innerText.match(regex) 
+    });
 } // End of search
 
 /**
  * Creates dog card elements
  */
+
+let viewButtons;
+
 const createDogElements = (data) => {
   data.forEach(dog => {
     dogSection.innerHTML += `
-      <div class="dog-card">
-      <div class="dog-card-content">
-      <p>${dog.description_of_dog}</p>
-      <p>${dog.address}<br>Austin, TX ${dog.zip_code}</p>
+    <div class="dog-card">
+    <div class="dog-card-content">
+    <p>${dog.description_of_dog}</p>
+      <p>${dog.address} - ${dog.zip_code}</p>
       <p>Owner: ${dog.first_name} ${dog.last_name}</p>
       </div>
       <div class="dog-card-button">
@@ -129,5 +134,25 @@ const createDogElements = (data) => {
       </div>
       </div>`;
   });
+
+  viewButtons = document.querySelectorAll('button.dog-card--button');
+  console.log(viewButtons);
+  viewButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      let clickedCard = btn.parentNode.parentNode;
+      let clickedContent = clickedCard.querySelectorAll('.dog-card-content > p')
+      let clickedAddress = clickedContent[1].innerText.split(' ');
+      clickedAddress.pop();
+      clickedAddress.pop();
+      let urlParam = clickedAddress.join('%20').concat('%20');
+      console.log('btn clicked', clickedCard, urlParam);
+    });
+  })
+
 }
+
+
+/**
+ * dog.html views
+ */
 
