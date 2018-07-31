@@ -208,7 +208,24 @@ const createDogElements = (data) => {
  */
 
 function getDog(addressQuery) {
-  console.log('https://data.austintexas.gov/resource/h8x4-nvyi.json' + addressQuery)
+  const url = 'https://data.austintexas.gov/resource/h8x4-nvyi.json?address=' + addressQuery;
+
+  $.ajax({
+    url: url,
+    type: "GET",
+      data: {
+        // "$limit" : 100000,
+      }
+    })
+    .done(function(data) {
+      // dogData.push(...data);
+      // createDogElements(data);
+      // mapControl(data);
+      initMap();
+      mapControl(data);
+      createDogElements(data);
+      console.log(data)
+  });
 }
 
 /**

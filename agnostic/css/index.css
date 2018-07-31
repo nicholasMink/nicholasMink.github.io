@@ -51,7 +51,7 @@ iframe {
   background: #fff;
   color: #474454;
   font-weight: 700;
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 .dog-card button:hover {
