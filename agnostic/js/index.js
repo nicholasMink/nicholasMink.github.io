@@ -6,6 +6,8 @@ let map;
 
 let installPromptEvent;
 
+getAllDogs();
+
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
   installPromptEvent = event; // Stash the event so it can be triggered later.
@@ -41,22 +43,28 @@ function registerServiceWorker() {
     });
 };
 
-$.ajax({
-  url: "https://data.austintexas.gov/resource/h8x4-nvyi.json",
-  type: "GET",
-    data: {
-      "$limit" : 100000,
-    }
-  })
-  .done(function(data) {
-    dogData.push(...data);
-    createDogElements(data);
-    mapControl(data);
-    console.log(data)
-});
+/**
+ * Get all dog data from https://data.austintexas.gov/resource/h8x4-nvyi.json
+ */
+function getAllDogs() {
+
+  $.ajax({
+    url: "https://data.austintexas.gov/resource/h8x4-nvyi.json",
+    type: "GET",
+      data: {
+        "$limit" : 100000,
+      }
+    })
+    .done(function(data) {
+      dogData.push(...data);
+      createDogElements(data);
+      mapControl(data);
+      // console.log(data)
+  });
+}
 
 /**
- * Map for dogs
+ * Google map init centered @ Austin, TX
  */
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -160,12 +168,11 @@ function displayMatches( ) {
     });
 } // End of search
 
-/**
- * Creates dog card elements
- */
 
 let viewButtons;
-
+/**
+ * Creates all dog card elements
+ */
 const createDogElements = (data) => {
   data.forEach(dog => {
     // console.log(dog);
@@ -184,7 +191,6 @@ const createDogElements = (data) => {
     </div>`;
   });
 
-  
   viewButtons = document.querySelectorAll('button.dog-card--button');
 
   viewButtons.forEach(btn => {
@@ -198,15 +204,38 @@ const createDogElements = (data) => {
       console.log('btn clicked', clickedCard, urlParam);
     });
   })
-  
 }
+
+
 
 /**
  * 
- * Create single dog view
+ * Create single dog card element
  * 
  */
 
+const createViewDog = (data) => {
+  data.forEach(dog => {
+    dogSection.innerHTML = '';
+    let btnId = dog.address.split(' ');
+    btnId = btnId.join('%20');
+    dogSection.innerHTML += `
+    <div class="dog-card">
+      <div class="dog-card-content">
+        <p>${dog.description_of_dog}</p>
+        <p>${dog.address} - ${dog.zip_code}</p>
+        <p>Owner: ${dog.first_name} ${dog.last_name}</p>
+      </div>
+      <div class="dog-card-button">
+        <button onclick="getAllDogs()">Show All Dogs</button>
+      </div>
+    </div>`;
+  });
+}
+
+/**
+ * Get single dog data from https://data.austintexas.gov/resource/h8x4-nvyi.json?address= + dog's registered address
+ */
 function getDog(addressQuery) {
   const url = 'https://data.austintexas.gov/resource/h8x4-nvyi.json?address=' + addressQuery;
 
@@ -218,12 +247,9 @@ function getDog(addressQuery) {
       }
     })
     .done(function(data) {
-      // dogData.push(...data);
-      // createDogElements(data);
-      // mapControl(data);
       initMap();
       mapControl(data);
-      createDogElements(data);
+      createViewDog(data);
       console.log(data)
   });
 }
