@@ -111,10 +111,18 @@ iframe {
   width: 15rem;
   font-size: 1.2rem;
 }
+
+main {
+  position: relative;
+}
+.dog-all-button {
+  position: absolute;
+}
 .overview {
   display: flex;
   justify-content: center;
 }
+
 .overview p {
   max-width: 78.5rem;
   display: flex;
