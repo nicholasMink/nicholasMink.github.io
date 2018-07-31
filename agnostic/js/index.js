@@ -4,6 +4,43 @@ const dogData = [];
 let dogs = [];
 let map;
 
+let installPromptEvent;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  installPromptEvent = event; // Stash the event so it can be triggered later.
+  document.querySelector('#install-button').disabled = false; // Update the install UI to notify the user app can be installed
+});
+
+if ('serviceWorker' in navigator) {
+  registerServiceWorker();
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('../sw.js').then(function(registration) {
+      if (!navigator.serviceWorker.controller) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        return;
+      } else {
+        console.log('Service worker controller in Navigator')
+      }
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+
+function registerServiceWorker() {
+  if (!navigator.serviceWorker) return;
+    navigator.serviceWorker.register('/sw.js', {
+      scope: './'
+    }).then(() => {
+          console.log('Service worker has been successfully registered.');
+    }).catch((err) => {
+          console.log('error' , err);
+    });
+};
+
 $.ajax({
   url: "https://data.austintexas.gov/resource/h8x4-nvyi.json",
   type: "GET",
@@ -87,24 +124,33 @@ const storeDogContent = (content) => {
 }
 
 function displayMatches( ) {
-  if (this.value.length < 1) {
+
+  const matchArray = findMatches(this.value, dogInfo);
+
+  if (this.value.length < 1 || matchArray.length === 0) {
     searchSuggestions.style.display = 'none';
   } else {
     searchSuggestions.style.display = 'block';
   }
 
-  const matchArray = findMatches(this.value, dogInfo);
-
   const html = matchArray.map(descr => {
+    let address = descr.nextElementSibling.childNodes[0].data;
+    // console.log('matchArray:', matchArray)
+    let queryAddress = address.substring(0, address.length - 7);
+    queryAddress = queryAddress.split(' ');
+    queryAddress = queryAddress.join('%20');
+    // console.log('address', queryAddress);
     return `
       <li>
-      <span class="dog-result">${descr.firstChild.data}</span>
+        <span id="${queryAddress}" class="dog-result" onclick="createDog()">${descr.firstChild.data}</span>
       </li>
       `;
     }).join('');
     
     searchSuggestions.innerHTML = html;
   }
+
+
   
   
   function findMatches(searchParam) {
@@ -122,21 +168,25 @@ let viewButtons;
 
 const createDogElements = (data) => {
   data.forEach(dog => {
+    // console.log(dog);
+    let btnId = dog.address.split(' ');
+    btnId = btnId.join('%20');
     dogSection.innerHTML += `
     <div class="dog-card">
-    <div class="dog-card-content">
-    <p>${dog.description_of_dog}</p>
-      <p>${dog.address} - ${dog.zip_code}</p>
-      <p>Owner: ${dog.first_name} ${dog.last_name}</p>
+      <div class="dog-card-content">
+        <p>${dog.description_of_dog}</p>
+        <p>${dog.address} - ${dog.zip_code}</p>
+        <p>Owner: ${dog.first_name} ${dog.last_name}</p>
       </div>
       <div class="dog-card-button">
-      <button class="dog-card--button">View Location</button>
+        <button id="${btnId}" onclick="getDog('${btnId}')">View Location</button>
       </div>
-      </div>`;
+    </div>`;
   });
 
+  
   viewButtons = document.querySelectorAll('button.dog-card--button');
-  console.log(viewButtons);
+
   viewButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       let clickedCard = btn.parentNode.parentNode;
@@ -148,9 +198,18 @@ const createDogElements = (data) => {
       console.log('btn clicked', clickedCard, urlParam);
     });
   })
-
+  
 }
 
+/**
+ * 
+ * Create single dog view
+ * 
+ */
+
+function getDog(addressQuery) {
+  console.log('https://data.austintexas.gov/resource/h8x4-nvyi.json' + addressQuery)
+}
 
 /**
  * dog.html views
