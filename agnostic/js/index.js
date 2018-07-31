@@ -14,34 +14,6 @@ window.addEventListener('beforeinstallprompt', (event) => {
   document.querySelector('#install-button').disabled = false; // Update the install UI to notify the user app can be installed
 });
 
-if ('serviceWorker' in navigator) {
-  registerServiceWorker();
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('../sw.js').then(function(registration) {
-      if (!navigator.serviceWorker.controller) {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        return;
-      } else {
-        console.log('Service worker controller in Navigator')
-      }
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  });
-}
-
-function registerServiceWorker() {
-  if (!navigator.serviceWorker) return;
-    navigator.serviceWorker.register('/sw.js', {
-      scope: './'
-    }).then(() => {
-          console.log('Service worker has been successfully registered.');
-    }).catch((err) => {
-          console.log('error' , err);
-    });
-};
 
 /**
  * Get all dog data from https://data.austintexas.gov/resource/h8x4-nvyi.json
@@ -51,16 +23,48 @@ function getAllDogs() {
   $.ajax({
     url: "https://data.austintexas.gov/resource/h8x4-nvyi.json",
     type: "GET",
-      data: {
-        "$limit" : 100000,
-      }
-    })
-    .done(function(data) {
-      dogData.push(...data);
-      createDogElements(data);
-      mapControl(data);
-      // console.log(data)
+    data: {
+      "$limit" : 100000,
+    }
+  })
+  .done(function(data) {
+    dogData.push(...data);
+    initMap();
+    createDogElements(data);
+    mapControl(data);
   });
+}
+
+const register = () => {
+
+  if ('serviceWorker' in navigator) {
+    registerServiceWorker();
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('../sw.js').then(function(registration) {
+        if (!navigator.serviceWorker.controller) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          return;
+        } else {
+          console.log('Service worker controller in Navigator')
+        }
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+  
+  function registerServiceWorker() {
+    if (!navigator.serviceWorker) return;
+      navigator.serviceWorker.register('/sw.js', {
+        scope: '/agnostic/'
+      }).then(() => {
+            console.log('Service worker has been successfully registered.');
+      }).catch((err) => {
+            console.log('error' , err);
+      });
+  };
 }
 
 /**
@@ -91,21 +95,27 @@ const setMapMarkers = (lat, long, markerTip, first, last, address) => {
     infowindow.open(map, marker);
   });
 
+  register();
+
 }
 
 let mapControl = (mapData) => {
-  // console.table(mapData)
-  mapData.forEach(dog => {
-    if (dog.location) {
-      let lat = dog.location.coordinates[1];
-      let long = dog.location.coordinates[0];
-      let description = dog.description_of_dog;
-      let ownerFirst = dog.first_name;
-      let ownerLast = dog.last_name;
-      let address = `${dog.address}, ${dog.zip_code}`;
-      setMapMarkers(lat, long, description, ownerFirst, ownerLast, address);
-    }
-  });
+  // console.table(mapData);
+  if (mapData.length < 3) {
+    setSingleMarker(mapData[0].location.coordinates[1], mapData[0].location.coordinates[0], mapData[0].description_of_dog, mapData[0].first_name, mapData[0].last_name, mapData[0].address + ' ' + mapData[0].zip_code);
+  } else {
+    mapData.forEach(dog => {
+      if (dog.location) {
+        let lat = dog.location.coordinates[1];
+        let long = dog.location.coordinates[0];
+        let description = dog.description_of_dog;
+        let ownerFirst = dog.first_name;
+        let ownerLast = dog.last_name;
+        let address = `${dog.address}, ${dog.zip_code}`;
+        setMapMarkers(lat, long, description, ownerFirst, ownerLast, address);
+      }
+    });
+  }
 } /* End of map */
 
 /**
@@ -158,9 +168,6 @@ function displayMatches( ) {
     searchSuggestions.innerHTML = html;
   }
 
-
-  
-  
   function findMatches(searchParam) {
     return dogInfo.filter(dog => {
       const regex = new RegExp(searchParam, 'gi');
@@ -170,6 +177,7 @@ function displayMatches( ) {
 
 
 let viewButtons;
+
 /**
  * Creates all dog card elements
  */
@@ -206,8 +214,6 @@ const createDogElements = (data) => {
   })
 }
 
-
-
 /**
  * 
  * Create single dog card element
@@ -238,6 +244,13 @@ const createViewDog = (data) => {
  */
 function getDog(addressQuery) {
   const url = 'https://data.austintexas.gov/resource/h8x4-nvyi.json?address=' + addressQuery;
+  // const showDogLocations = document.querySelector('.overview').parentElement;
+  // console.log(showDogLocations);
+  // let showDogButton = document.createElement('button');
+  // // showDogButton.innerText = 'Show All';
+  // // showDogButton.className = 'dog-all-button';
+
+  // // showDogLocations.appendChild(showDogButton);
 
   $.ajax({
     url: url,
@@ -249,12 +262,35 @@ function getDog(addressQuery) {
     .done(function(data) {
       initMap();
       mapControl(data);
-      createViewDog(data);
+      /** 
+       * TODO:
+       * Bug - createViewDog shows a single dog with same address
+       *      Fix querying by address to something safer
+      */
+      // createViewDog(data);
       console.log(data)
+  });
+  window.scroll({
+    top: 0,
+    behavior: "smooth"
   });
 }
 
-/**
- * dog.html views
- */
+const setSingleMarker = (lat, long, markerTip, first, last, address) => {
+  const content = `<h3>${markerTip}</h3><h4>Owner - ${first} ${last}</h4><p>${address}</p>`;
+  var infowindow = new google.maps.InfoWindow({
+    content: content
+  });
 
+  var latLng = new google.maps.LatLng(lat, long);
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    title: markerTip,
+    animation: google.maps.Animation.DROP
+  });
+
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+  infowindow.open(map, marker);
+
+}
