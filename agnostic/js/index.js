@@ -288,6 +288,7 @@ const setSingleMarker = (lat, long, first, last, address) => {
     position: latLng,
     map: map,
     title: address,
+    icon: '../agnostic/img/dog-marker.svg', // adjust for local development
     animation: google.maps.Animation.DROP
   });
 
