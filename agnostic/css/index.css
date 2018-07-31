@@ -96,9 +96,12 @@ body {
   width: 15rem;
   font-size: 1.2rem;
 }
-
+.overview {
+  display: flex;
+  justify-content: center;
+}
 .overview p {
-  max-width: 60.5rem;
+  max-width: 78.5rem;
   display: flex;
   margin: 0 1rem;
   background: #eee;
@@ -131,6 +134,12 @@ a.skip-main:focus, a.skip-main:active {
   text-align:center;
   font-size:1.2em;
   z-index:999;
+}
+
+/* dog.html styles */
+
+.breadcrumbs {
+  display: flex;
 }
 
 @media screen and (max-width: 50em) {
