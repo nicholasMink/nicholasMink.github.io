@@ -67,22 +67,50 @@ let mapControl = (mapData) => {
  */
 let dogContent;
 let searchParam;
+let dogInfo = [];
 
 dogInput.addEventListener('click', () => {
   dogContent = document.querySelectorAll('.dog-card-content');
   storeDogContent(dogContent);
 });
 
-dogInput.addEventListener('keyup', () => {
-  searchParam = dogInput.value;
-  console.log(searchParam);
-});
+dogInput.addEventListener('keyup', displayMatches);
+dogInput.addEventListener('change', displayMatches);
+const searchSuggestions = document.querySelector('.suggestions');
 
 const storeDogContent = (content) => {
   content.forEach(dog => {
-    console.log(dog.children[0].innerText);
+    dogInfo.push(dog.children[0]);
   })
 }
+
+function displayMatches( ) {
+  if (this.value.length < 1) {
+    searchSuggestions.style.display = 'none';
+  } else {
+    searchSuggestions.style.display = 'block';
+  }
+
+  const matchArray = findMatches(this.value, dogInfo);
+
+  const html = matchArray.map(descr => {
+    return `
+      <li>
+        <span class="dog-result">${descr.firstChild.data}</span>
+      </li>
+    `;
+  }).join('');
+
+  searchSuggestions.innerHTML = html;
+}
+
+
+function findMatches(searchParam) {
+  return dogInfo.filter(dog => {
+    const regex = new RegExp(searchParam, 'gi');
+    return dog.innerText.match(regex) 
+  });
+} // End of search
 
 /**
  * Creates dog card elements
