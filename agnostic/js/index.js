@@ -277,7 +277,7 @@ function getDog(addressQuery) {
   });
 }
 
-const setSingleMarker = (lat, long, first, last, address) => {
+const setSingleMarker = (lat, long, description, first, last, address) => {
   const content = `<h3>Owner - ${first} ${last}</h3><h4>${address}</h4>`;
   var infowindow = new google.maps.InfoWindow({
     content: content
