@@ -112,12 +112,12 @@ iframe {
   font-size: 1.2rem;
 }
 
-main {
+/* main {
   position: relative;
 }
 .dog-all-button {
   position: absolute;
-}
+} */
 .overview {
   display: flex;
   justify-content: center;
