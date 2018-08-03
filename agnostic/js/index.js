@@ -1,3 +1,7 @@
+/** 
+ * See function "setMapMarkers" and "setSingleMarker" below for local development
+*/
+
 const dogSection = document.querySelector('.dog-data');
 const dogInput = document.querySelector('#dog-search');
 const dogData = [];
@@ -6,7 +10,8 @@ let map;
 
 let installPromptEvent;
 
-getAllDogs();
+getAllDogs(); // loads all dogs on page load
+register(); // register service worker
 
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
@@ -14,12 +19,11 @@ window.addEventListener('beforeinstallprompt', (event) => {
   document.querySelector('#install-button').disabled = false; // Update the install UI to notify the user app can be installed
 });
 
-
 /**
  * Get all dog data from https://data.austintexas.gov/resource/h8x4-nvyi.json
  */
 function getAllDogs() {
-
+  
   $.ajax({
     url: "https://data.austintexas.gov/resource/h8x4-nvyi.json",
     type: "GET",
@@ -35,7 +39,10 @@ function getAllDogs() {
   });
 }
 
-const register = () => {
+/** 
+ * Service worker registration
+*/
+function register() {
 
   if ('serviceWorker' in navigator) {
     registerServiceWorker();
@@ -54,7 +61,7 @@ const register = () => {
       });
     });
   }
-  
+
   function registerServiceWorker() {
     if (!navigator.serviceWorker) return;
       navigator.serviceWorker.register('/agnostic/sw.js', {
@@ -65,7 +72,7 @@ const register = () => {
             console.log('error' , err);
       });
   };
-}
+} // End of service worker registration
 
 /**
  * Google map init centered @ Austin, TX
@@ -78,34 +85,57 @@ function initMap() {
 }
 
 const setMapMarkers = (lat, long, markerTip, first, last, address) => {
+  
   const content = `<h3>${markerTip}</h3><h4>Owner - ${first} ${last}</h4><p>${address}</p>`;
+  
   var infowindow = new google.maps.InfoWindow({
     content: content
   });
 
   var latLng = new google.maps.LatLng(lat, long);
-  // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
   var marker = new google.maps.Marker({
     position: latLng,
     map: map,
     title: markerTip,
-    icon: '../agnostic/img/dog-marker.svg', // adjust for local development
+    icon: '../agnostic/img/dog-marker.svg', // uncomment for master branch
+    // icon: '../img/dog-marker.svg',          // uncomment line for local development
     animation: google.maps.Animation.DROP
   });
-
+ 
   marker.addListener('click', function() {
     infowindow.open(map, marker);
   });
+}
 
-  register();
+const setSingleMarker = (lat, long, description, first, last, address) => {
 
+  const content = `<h3>Owner - ${first} ${last}</h3><h4>${address}</h4>`;
+
+  var infowindow = new google.maps.InfoWindow({
+    content: content
+  });
+
+  var latLng = new google.maps.LatLng(lat, long);
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    title: address,
+    icon: '../agnostic/img/dog-marker.svg', // uncomment for master branch
+    // icon: '../img/dog-marker.svg',          // uncomment line for local development
+    animation: google.maps.Animation.DROP
+  });
+
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+  infowindow.open(map, marker);
 }
 
 let mapControl = (mapData) => {
+  // TODO: If owner has more than 2 dangerous dogs then display in a "featured dangerous" section or different color map marker
   // console.table(mapData);
   if (mapData.length < 3) {
     setSingleMarker(mapData[0].location.coordinates[1], mapData[0].location.coordinates[0], mapData[0].first_name, mapData[0].last_name, mapData[0].address + ' ' + mapData[0].zip_code);
   } else {
+    // Set map data for all dogs
     mapData.forEach(dog => {
       if (dog.location) {
         setMapMarkers(dog.location.coordinates[1], dog.location.coordinates[0], dog.description_of_dog, dog.first_name, dog.last_name, dog.address + ' ' + dog.zip_code);
@@ -126,9 +156,9 @@ dogInput.addEventListener('click', () => {
   storeDogContent(dogContent);
 });
 
-
 dogInput.addEventListener('keyup', displayMatches);
 dogInput.addEventListener('change', displayMatches);
+
 const searchSuggestions = document.querySelector('.suggestions');
 
 const storeDogContent = (content) => {
@@ -137,6 +167,9 @@ const storeDogContent = (content) => {
   })
 }
 
+/**
+ * displays dog names that match user input
+ */
 function displayMatches( ) {
 
   const matchArray = findMatches(this.value, dogInfo);
@@ -149,31 +182,23 @@ function displayMatches( ) {
 
   const html = matchArray.map(descr => {
     let address = descr.nextElementSibling.childNodes[0].data;
-    // console.log('matchArray:', matchArray)
     let queryAddress = address.substring(0, address.length - 8);
     queryAddress = queryAddress.split(' ');
     queryAddress = queryAddress.join('%20');
-    // console.log('address', queryAddress, 'descr:', descr);
-
     return `
     <li tabindex="0" onclick="getDog('${queryAddress}')">
-        <span id="${queryAddress}" class="dog-result">${descr.firstChild.data}</span>
-      </li>
-      `;
-    }).join('');
-    
-    searchSuggestions.innerHTML = html;
-  }
+      <span id="${queryAddress}" class="dog-result">${descr.firstChild.data}</span>
+    </li>`;
+  }).join('');
+  searchSuggestions.innerHTML = html;
+}
 
-  function findMatches(searchParam) {
-    return dogInfo.filter(dog => {
-      const regex = new RegExp(searchParam, 'gi');
-      return dog.innerText.match(regex) 
-    });
+function findMatches(searchParam) {
+  return dogInfo.filter(dog => {
+    const regex = new RegExp(searchParam, 'gi');
+    return dog.innerText.match(regex) 
+  });
 } // End of search
-
-
-let viewButtons;
 
 /**
  * Creates all dog card elements
@@ -196,8 +221,8 @@ const createDogElements = (data) => {
     </div>`;
   });
 
-  viewButtons = document.querySelectorAll('button.dog-card--button');
-  
+  let viewButtons = document.querySelectorAll('button.dog-card--button');
+
   viewButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       let clickedCard = btn.parentNode.parentNode;
@@ -209,14 +234,11 @@ const createDogElements = (data) => {
       console.log('btn clicked', clickedCard, urlParam);
     });
   })
-}
+} // End of all dog cards
 
 /**
- * 
  * Create single dog card element
- * 
  */
-
 const createViewDog = (data) => {
   data.forEach(dog => {
     dogSection.innerHTML = '';
@@ -225,17 +247,17 @@ const createViewDog = (data) => {
     dogSection.innerHTML += `
     <div class="dog-card">
       <div class="dog-card-content">
-      <p>${dog.description_of_dog}</p>
-      <p>${dog.address} - ${dog.zip_code}</p>
+        <p>${dog.description_of_dog}</p>
+        <p>${dog.address} - ${dog.zip_code}</p>
         <p>Owner: ${dog.first_name} ${dog.last_name}</p>
-        </div>
-        <div class="dog-card-button">
+      </div>
+      <div class="dog-card-button">
         <button onclick="getAllDogs()">Show All Dogs</button>
-        </div>
-        </div>`;
-      });
-    }
-    
+      </div>
+    </div>`;
+  });
+}
+
 /**
  * Get single dog data from https://data.austintexas.gov/resource/h8x4-nvyi.json?address= + dog's registered address
  */
@@ -244,14 +266,7 @@ function getDog(addressQuery) {
   console.log(addressQuery);
   searchSuggestions.style.display = 'none';
   const url = 'https://data.austintexas.gov/resource/h8x4-nvyi.json?address=' + addressQuery;
-  // const showDogLocations = document.querySelector('.overview').parentElement;
-  // console.log(showDogLocations);
-  // let showDogButton = document.createElement('button');
-  // // showDogButton.innerText = 'Show All';
-  // // showDogButton.className = 'dog-all-button';
-  
-  // // showDogLocations.appendChild(showDogButton);
-  
+
   $.ajax({
     url: url,
     type: "GET",
@@ -260,10 +275,9 @@ function getDog(addressQuery) {
       }
     })
     .done(function(data) {
-      console.log(...data);
+      // console.table(...data);
       initMap();
       setSingleMarker(data[0].location.coordinates[1], data[0].location.coordinates[0], data[0].description_of_dog, data[0].first_name, data[0].last_name, data[0].address + ' ' + data[0].zip_code);
-      // mapControl(data);
       /** 
        * TODO:
        * Bug - createViewDog shows a single dog with same address
@@ -277,22 +291,3 @@ function getDog(addressQuery) {
   });
 }
 
-const setSingleMarker = (lat, long, description, first, last, address) => {
-  const content = `<h3>Owner - ${first} ${last}</h3><h4>${address}</h4>`;
-  var infowindow = new google.maps.InfoWindow({
-    content: content
-  });
-
-  var latLng = new google.maps.LatLng(lat, long);
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map,
-    title: address,
-    icon: '../agnostic/img/dog-marker.svg', // adjust for local development
-    animation: google.maps.Animation.DROP
-  });
-
-  marker.setAnimation(google.maps.Animation.BOUNCE);
-  infowindow.open(map, marker);
-
-}
